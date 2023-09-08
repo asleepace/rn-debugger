@@ -12,19 +12,25 @@ npm install
 npm run start
 ```
 
-### Sending data to rn-debugger client
+## How to send data
 
-Once the server is running it will listen for `POST` requests on http://localhost:8082/debugger and forward the body to the connected client, below is the message format:
+Send a `POST` request to http://localhost:8082/debugger with the following format
 
 ```TypeScript
 const queue: string[] = []
-const message = JSON.stringify(['hello world!', 'argument1', 'argument2', '...'])
+const message = ['hello world!', 'argument1', 123, { foo: 'bar' }]
 
 queue.push(message)
 
+const encodedMessages = queue.map(item => JSON.stringify(item))
+const encodedBody = JSON.stringify(encodedMessages)
+
 fetch("http://localhost:8082/debugger", {
-  body: JSON.stringify(quque)
+  body: encodedBody,
   method: "POST",
 })
 ```
 
+## How to view data
+
+Open http://localhost:8082 in your browser and open the chrome devtools.
