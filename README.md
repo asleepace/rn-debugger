@@ -33,4 +33,4 @@ fetch("http://localhost:8082/debugger", {
 
 ## How to view data
 
-Open http://localhost:8082 in your browser and open the chrome devtools.
+Open http://localhost:8082 in your browser and open the chrome devtools to see the following
